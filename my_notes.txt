@@ -1,0 +1,178 @@
+🧩 Core Modules
+🔐 Authentication
+--------------------------------
+Register/Login (with email verification)
+
+Social login (optional)
+
+Role-based access: Developer, Admin
+===================================
+👤 Developer Profile
+------------------------------------
+Profile picture, bio, location
+
+Skills (taggable)
+
+Work experience & education
+
+Portfolio section (projects with images, links, GitHub)
+
+Resume upload/download
+===================================
+
+🛒 Marketplace (Sell Work)
+---------------------------------------------
+Add "products" (e.g., templates, scripts, components)
+
+Title, description, preview images, pricing, download file
+
+Categories/tags
+
+Paid via Stripe/PayPal (use Laravel Cashier or Omnipay)
+
+Admin approval for new products (optional)
+
+Rating & Reviews
+=======================================
+
+🔍 Search & Discovery
+-------------------------------------
+Browse developer profiles by skills
+
+Browse products with filters (price, tech, rating)
+
+Full-text search (Laravel Scout + Meilisearch/Algolia)
+=============================================
+
+🧾 Dashboard
+-------------------------
+Separate dashboards for:
+
+Developers: views, sales, reviews, product management
+
+Admin: manage users, payments, content moderation
+==============================================
+
+🔔 Notifications
+-------------------------------
+When someone buys a product
+
+When product is approved
+
+Optional: followers, likes, comments
+
+💬 Optional Add-ons
+Messaging system (developer-to-developer)
+
+Blog articles/tutorials per user
+
+API access (public endpoint for profiles)
+
+Light/dark mode
+============================
+
+📦 Tech Stack
+Laravel 11 (backend)
+
+Blade or Livewire (frontend)
+
+Tailwind CSS (UI)
+
+MySQL/PostgreSQL (DB)
+
+Laravel Cashier (subscriptions/purchases)
+
+Laravel Scout (search)
+
+Spatie Packages: Media Library, Roles & Permissions, Activitylog
+
+Pusher + Laravel Echo for real-time notifications
+
+======================================
+
+✅ MVP Feature List (Start Here)
+------------------------------------------------
+ User registration & login
+
+ Developer profile creation
+
+ Add/edit skills & experience
+
+ Upload portfolio projects
+
+ Add digital product (title, price, file)
+
+ Browse profiles & products
+
+ Product purchase via Stripe
+
+ Basic admin panel
+
+
+
+===========================
+
+
+ Plan the Project Structure
+------------------------------------------------
+Before touching the code or DB, do some basic planning.
+
+🔸 1. Define Your User Roles
+--------------------------------------------
+Developer: Can register, create profile, add portfolio/products
+
+Admin: Manages users, approves content, sees sales
+
+🔸 2. List Key Features (MVP)
+------------------------------------------------
+Write down the minimum features you want in the first version:
+
+Register/login with email verification :
+	details of the user at the time of account creation includes : firstname, lastname, email, password
+
+Developer profile with skills & experience:
+	details include : educational qualification( multiple),
+				country,
+				available to work,
+				skills,
+				experience,
+				products to sell
+
+Add/edit portfolio
+
+Upload and sell digital products: 
+	details : product_name,
+		     description,
+		     price
+
+Admin panel
+
+Blogs : add/ edit 
+
+===================
+DATABASE SCHEMA
+---------------------------------
+👤 users :
+id, name, email, password, role (developer/admin)
+
+📄 profiles :
+user_id (FK), bio, location, photo, resume, etc.
+
+🛠 skills :
+id, name
+
+🧠 profile_skill (pivot table) :
+profile_id, skill_id
+
+🗂 experiences :
+profile_id (FK), title, company, start_date, end_date, description
+
+💼 portfolios :
+profile_id (FK), title, description, live_link, github_link, image
+
+🛒 products :
+user_id, title, description, price, file_path, preview_image, approved (bool)
+
+💳 orders :
+user_id (buyer), product_id, total_price, created_at
+
