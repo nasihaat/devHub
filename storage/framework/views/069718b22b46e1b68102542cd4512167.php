@@ -1,0 +1,2 @@
+<img src="<?php echo e(asset('images/my-logo.png')); ?>" alt="My Logo" class="h-16 w-auto "/>
+<?php /**PATH C:\xampp\htdocs\laravel\devHub\resources\views/components/application-logo.blade.php ENDPATH**/ ?>
